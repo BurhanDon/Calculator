@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+  <link rel="icon" href="Portfolio/calculator.png" type="image/x-icon">
+</head>
+
+<style>
+    * {
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+    }
+
+    body {
+            background: rgb(238, 174, 202);
+            background: radial-gradient(circle, rgb(91, 90, 87)0%, rgb(175, 134, 12)100%);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+    .container {
+        margin-top: 25px;
+        text-align: center;
+        /* border: 2px solid blue; */
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    table {
+        /* border: 2px solid red; */
+        height: 50%;
+        width: 33%;
+        margin: auto;
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+    }
+
+    .main {
+        border-radius: 3px;
+        cursor: cell;
+        display: inline-block;
+        box-shadow: 0px 0px 0px 25px #282828;
+        background-color: #282828;
+    }
+
+    button {
+        cursor: cell;
+        font-size: 30px;
+        font-style: italic;
+        box-shadow: inset 0px 0px 5px 5px rgb(122 122 122 / 38%);
+        font-weight: 700;
+        height: 60px;
+        width: 95px;
+        color: white;
+        border-radius: 3px;
+        margin: 5px;
+        background-color: black;
+    }
+
+    button:hover {
+        background-color: rgb(16, 16, 16);
+    }
+
+    #screen {
+        font-size: 35.6px;
+        border-radius: 3px;
+        border: 0px;
+        background-color: #EDEDED;
+        font-family: 'Digital-7', monospace;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+        font-size: 50px;
+    }
+
+    .special {
+        background-color: rgb(174, 84, 5);
+        border-color: rgb(255, 185, 7);
+        border: 0px;
+    }
+
+    .special:hover {
+        background-color: rgb(162, 76, 0);
+    }
+
+    @font-face {
+        font-family: 'Digital-7';
+        src: url('path/to/digital-7.ttf') format('truetype');
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>CALCULATOR</h1>
+        <div class="main">
+            <input type="text" name="screen" id="screen">
+            <table>
+                <tr>
+                    <td><button>AC</button></td>
+                    <td><button>C</button></td>
+                    <td><button></button></td>
+                    <td><button class="special">/</button></td>
+                </tr>
+                <tr>
+                    <td><button>7</button></td>
+                    <td><button>8</button></td>
+                    <td><button>9</button></td>
+                    <td><button class="special">x</button></td>
+                </tr>
+                <tr>
+                    <td><button>4</button></td>
+                    <td><button>5</button></td>
+                    <td><button>6</button></td>
+                    <td><button class="special">-</button></td>
+                </tr>
+                <tr>
+                    <td><button>1</button></td>
+                    <td><button>2</button></td>
+                    <td><button>3</button></td>
+                    <td><button class="special">+</button></td>
+                </tr>
+                <tr>
+                    <td><button>0</button></td>
+                    <td><button>00</button></td>
+                    <td><button>.</button></td>
+                    <td><button class="special">=</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+<script>
+    let screen = document.getElementById('screen');
+    buttons = document.querySelectorAll('button');
+    let screenValue = '';
+    for (item of buttons) {
+        item.addEventListener('click', (e) => {
+            buttonText = e.target.innerText;
+            if (buttonText == 'x') {
+                buttonText = '*';
+                screenValue += buttonText;
+                screen.value = screenValue;
+            }
+            else if (buttonText == 'C') {
+                screenValue = "";
+                screen.value = screenValue;
+            }
+            else if (buttonText == '=') {
+                screen.value = eval(screenValue);
+            }
+            else if (buttonText == 'AC') {
+                screen.value = screen.value.slice(0, -1);
+                screenValue = screen.value;
+            }
+            else {
+                screen.value += buttonText;
+                screenValue = screen.value;
+            };
+        });
+    };
+</script>
+
+</html>
